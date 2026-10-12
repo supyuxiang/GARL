@@ -1,0 +1,34 @@
+# GARL default hyperparameters (paper Appendix)
+model:
+  name: Qwen/Qwen2.5-7B-Instruct
+
+cold_start:
+  samples: 10000
+  sft_epochs: 3
+  reflection_samples: 4
+  plan_samples: 4
+
+garl:
+  rl_dataset_size: 30000
+  alternating_rounds: 5
+  coach_dpo_steps: 300
+  actor_grpo_steps: 300
+  alpha: 0.3
+  dpo_beta: 0.1
+  grpo_group_size: 8
+  grpo_epsilon: 0.2
+
+optim:
+  lr: 1.0e-5
+  weight_decay: 1.0e-2
+  warmup_ratio: 0.0
+
+generation:
+  train:
+    temperature: 1.0
+    top_p: 1.0
+  eval:
+    temperature: 0.6
+    top_p: 0.95
+    top_k: 50
+    max_new_tokens: 4096

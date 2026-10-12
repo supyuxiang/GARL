@@ -1,0 +1,25 @@
+defaults:
+  - model@model: hf_model
+  - _self_
+
+data:
+  train_files: ~/data/garl/coach_dpo.parquet
+  micro_batch_size_per_gpu: 1
+  max_length: 4096
+  cache_dir: ~/.cache/verl/garl_dpo
+
+model:
+  path: Qwen/Qwen2.5-7B-Instruct
+  ref_path: null
+
+optim:
+  lr: 1.0e-5
+  weight_decay: 1.0e-2
+
+trainer:
+  default_local_dir: checkpoints/garl/coach_dpo
+  project_name: garl
+  experiment_name: coach_dpo
+  total_training_steps: 300
+  dpo_beta: 0.1
+  device: cuda

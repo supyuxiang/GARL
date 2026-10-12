@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "garl-math"
+version = "0.1.0"
+description = "GARL: Guidance-Aware Reinforcement Learning for dual-agent math reasoning"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [{ name = "GARL Authors" }]
+dependencies = [
+  "torch>=2.1.0",
+  "transformers>=4.44.0",
+  "accelerate>=0.33.0",
+  "datasets>=2.20.0",
+  "peft>=0.12.0",
+  "sympy>=1.12",
+  "regex>=2024.5.15",
+  "pyyaml>=6.0",
+  "tqdm>=4.66.0",
+  "numpy>=1.26.0",
+]
+
+[project.optional-dependencies]
+vllm = ["vllm>=0.6.0"]
+openai = ["openai>=1.40.0"]
+dev = ["pytest>=8.0", "ruff>=0.6.0"]
+
+[project.scripts]
+garl-train = "garl.cli:main_train"
+garl-eval = "garl.cli:main_eval"
+garl-infer = "garl.cli:main_infer"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["garl*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
